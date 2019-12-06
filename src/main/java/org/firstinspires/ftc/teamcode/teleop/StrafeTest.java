@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.teleop;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 @TeleOp(name = "StrafeTest2019", group = "Testing")
-public class StrafeTest extends BaseTeleop {
+public class StrafeTest extends BaseOpMode {
 
 
     boolean UpBeingPressed;
