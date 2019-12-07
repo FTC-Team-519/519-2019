@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.teleop;
+package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -13,7 +13,10 @@ public abstract class BaseOpMode extends OpMode {
     public DcMotor backLeft;
     public DcMotor frontRight;
     public DcMotor backRight;
+    public DcMotor linAc;
+    public DcMotor lift;
 
+    //
     public static final int FRONT_LEFT  = 0;
     public static final int FRONT_RIGHT = 1;
     public static final int BACK_LEFT   = 2;
@@ -26,9 +29,15 @@ public abstract class BaseOpMode extends OpMode {
 
 
     // Teleop Positioning
-    private float x;
-    private float y;
-    private float z;
+    public float x;
+    public float y;
+    public float z;
+
+    public float gunnerRightX;
+    public float gunnerRightY;
+
+    public float gunnerLeftX;
+    public float gunnerLeftY;
 
     // Gamepads
     public Gamepad driver;
@@ -36,6 +45,7 @@ public abstract class BaseOpMode extends OpMode {
 
     public int using = 0;
     public void setupHardware() {
+        // Drive
         frontLeft = hardwareMap.dcMotor.get("front_left");
         backLeft = hardwareMap.dcMotor.get("back_left");
         frontRight = hardwareMap.dcMotor.get("front_right");
@@ -45,6 +55,10 @@ public abstract class BaseOpMode extends OpMode {
         //backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
         backRight.setDirection(DcMotorSimple.Direction.REVERSE);
 
+
+        // Other motors
+        lift = hardwareMap.dcMotor.get("lift");
+        lift.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         //backRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
       //  backLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
        // frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -98,7 +112,13 @@ public abstract class BaseOpMode extends OpMode {
         x = this.shapeInput(driver.left_stick_x);
         y = this.shapeInput(-driver.left_stick_y);
         z = this.shapeInput(driver.right_stick_x);
-    }
+
+        gunnerLeftX = this.shapeInput(gunner.left_stick_x);
+        gunnerLeftY = this.shapeInput(-gunner.left_stick_y);
+
+        gunnerRightX = this.shapeInput(gunner.right_stick_x);
+        gunnerRightY = this.shapeInput(-gunner.right_stick_y);
+   }
 
     // Only used during teleop to update motors based on gamepad
     public void updateDriveMotors() {
@@ -135,7 +155,12 @@ public abstract class BaseOpMode extends OpMode {
     public abstract void init();
     public abstract void loop();
     public abstract void init_loop();
-    public abstract void start();
+
+    // OVERRIDE IN SUBCLASSES BUT CALL SUPER
+    public void start() {
+        lift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        lift.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+    }
 
     public BaseOpMode() {
 

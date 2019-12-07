@@ -2,6 +2,8 @@ package org.firstinspires.ftc.teamcode.teleop;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import org.firstinspires.ftc.teamcode.BaseOpMode;
+
 @TeleOp(name = "StrafeTest2019", group = "Testing")
 public class StrafeTest extends BaseOpMode {
 
