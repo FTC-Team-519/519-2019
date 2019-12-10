@@ -16,7 +16,6 @@ public abstract class BaseOpMode extends OpMode {
     public DcMotor linAc;
     public DcMotor lift;
 
-    //
     public static final int FRONT_LEFT  = 0;
     public static final int FRONT_RIGHT = 1;
     public static final int BACK_LEFT   = 2;
@@ -26,7 +25,10 @@ public abstract class BaseOpMode extends OpMode {
     private static double[] motorPowers = new double[4];
 
     // Servos
-
+    public Servo grabberRight;
+    public Servo grabberLeft;
+    public Servo grabberTurn;
+    public Servo foundationGrabber;
 
     // Teleop Positioning
     public float x;
@@ -59,6 +61,13 @@ public abstract class BaseOpMode extends OpMode {
         // Other motors
         lift = hardwareMap.dcMotor.get("lift");
         lift.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        // Servos
+      /*  grabberLeft = hardwareMap.servo.get("grabber_left");
+        grabberRight = hardwareMap.servo.get("grabber_right");
+        grabberTurn = hardwareMap.servo.get("grabber_turn");
+        foundationGrabber = hardwareMap.servo.get("foundation_grabber");*/
+
         //backRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
       //  backLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
        // frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
