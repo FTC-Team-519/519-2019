@@ -30,6 +30,7 @@ public abstract class BaseOpMode extends OpMode {
     public Servo grabberTurn;
     public Servo foundationGrabber;
 
+
     // Teleop Positioning
     public float x;
     public float y;
@@ -60,13 +61,15 @@ public abstract class BaseOpMode extends OpMode {
 
         // Other motors
         lift = hardwareMap.dcMotor.get("lift");
-        lift.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        linAc = hardwareMap.dcMotor.get("linear_ac");
 
+        lift.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        linAc.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         // Servos
-      /*  grabberLeft = hardwareMap.servo.get("grabber_left");
+        grabberLeft = hardwareMap.servo.get("grabber_left");
         grabberRight = hardwareMap.servo.get("grabber_right");
         grabberTurn = hardwareMap.servo.get("grabber_turn");
-        foundationGrabber = hardwareMap.servo.get("foundation_grabber");*/
+        foundationGrabber = hardwareMap.servo.get("foundation_grabber");
 
         //backRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
       //  backLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -169,6 +172,8 @@ public abstract class BaseOpMode extends OpMode {
     public void start() {
         lift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         lift.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        linAc.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        linAc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
     public BaseOpMode() {
