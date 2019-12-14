@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.teleop;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.BaseOpMode;
 
@@ -27,21 +28,13 @@ public class Teleop extends BaseOpMode {
     // Lift
     private float upLiftSpeed = 1f;
     private float downLiftSpeed = .9f;
+    private float grabberFast = .01f;
+    private float grabberSlow = .005f;
+    private float grabberSpeed = grabberFast;
 
     // LinAc
     private float outLinAcSpeed = .6f;
     private float inLinAcSpeed = -.5f;
-
-    // Grabber
-    private float leftOpenFull = .1f;
-    private float leftOpenHalf = .3f;
-    private float leftCloseFull = 1f;
-    private float leftCloseHalf = .4f;
-
-    private float rightOpenFull = .9f;
-    private float rightOpenHalf = .3f;
-    private float rightCloseFull = 0f;
-    private float rightCloseHalf = .4f;
 
 
     public void updateLift() {
@@ -49,6 +42,18 @@ public class Teleop extends BaseOpMode {
         this.log("Lift Speed", "Up: " + upLiftSpeed + " | Down: " + downLiftSpeed);
 
         // Make the lift go slower on down, due to gravity influence
+        if (lift.getCurrentPosition() <= -1) {
+            if (gunnerRightY < 0) {
+                lift.setPower(0);
+                return;
+            }
+        } else if (lift.getCurrentPosition() >= 3220) {
+            if (gunnerRightY > 0) {
+                lift.setPower(0);
+                return;
+            }
+        }
+
         lift.setPower((gunnerRightY < 0) ? gunnerRightY*downLiftSpeed : gunnerRightY*upLiftSpeed);
 }
 
@@ -65,13 +70,13 @@ public class Teleop extends BaseOpMode {
         this.log("Grabber Turn-Servo Reading", grabberTurn.getPosition() + "");
 
         if (gunnerLeftX > 0.1) {
-            position += .01;
+            position += grabberSpeed;
         } else if (gunnerLeftX < -.1){
-            position -= .01;
+            position -= grabberSpeed;
         }
 
         if (gunner.left_stick_button) {
-            position = .5;
+            position = .53;
         }
 
         position = clamp(position, .2f, .87f);
@@ -89,9 +94,13 @@ public class Teleop extends BaseOpMode {
         if (gunner.y) {
             // LinAc out
             //linAc.setTargetPosition();
-            linAc.setPower(outLinAcSpeed);
+            if (linAc.getCurrentPosition() <= 3700) {
+                linAc.setPower(outLinAcSpeed);
+            }
         } else if (gunner.a) {
-            linAc.setPower(inLinAcSpeed);
+            if (linAc.getCurrentPosition() >= 0) {
+                linAc.setPower(inLinAcSpeed);
+            }
         } else {
             linAc.setPower(0);
         }
@@ -109,7 +118,7 @@ public class Teleop extends BaseOpMode {
         this.updateLift();
         this.updateGrabber();
 
-        if (gunner.left_bumper) {
+        if (gunner.left_trigger >= .9) {
             grabberRight.setPosition(rightOpenFull);
             grabberLeft.setPosition(leftOpenFull);
         }
@@ -119,15 +128,34 @@ public class Teleop extends BaseOpMode {
             grabberLeft.setPosition(leftCloseFull);
         }
 
-        this.log("right trigger", gunner.right_trigger + "");
-        /*if (gunner.right_trigger) {
-            grabberRight.setPosition(rightCloseFull);
-            grabberLeft.setPosition(leftCloseFull);
-        }*/
+        if (gunner.right_bumper) {
+            grabberRight.setPosition(rightCloseHalf);
+            grabberLeft.setPosition(leftCloseHalf);
+        }
 
         this.updateDriveMotors();
 
-        this.log("Grabber Left", grabberLeft.getPosition() + "");
-        this.log("Grabber Right", grabberRight.getPosition() + "");
+
+        if (gunner.start) {
+            this.log("Resetting horizontal", "-");
+            linAc.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            linAc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        }
+
+        if (gunner.back) {
+            this.log("Resetting lift", "-"); // 3700 linac max out, 0 in
+            lift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            lift.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        }
+
+        if (gunner.x) {
+            grabberSpeed = grabberSlow;
+        }
+
+        if (gunner.b) {
+            grabberSpeed = grabberFast;
+        }
+        //this.log("Grabber Left", grabberLeft.getPosition() + "");
+       // this.log("Grabber Right", grabberRight.getPosition() + "");
     }
 }

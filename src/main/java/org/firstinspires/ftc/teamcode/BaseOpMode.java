@@ -30,6 +30,14 @@ public abstract class BaseOpMode extends OpMode {
     public Servo grabberTurn;
     public Servo foundationGrabber;
 
+    // Grabber
+    protected float rightOpenFull = .1f;
+    protected float rightCloseFull = 1f;
+    protected float rightCloseHalf = .8f;
+
+    protected float leftOpenFull = .9f;
+    protected float leftCloseFull = 0f;
+    protected float leftCloseHalf = .2f;
 
     // Teleop Positioning
     public float x;
@@ -71,10 +79,13 @@ public abstract class BaseOpMode extends OpMode {
         grabberTurn = hardwareMap.servo.get("grabber_turn");
         foundationGrabber = hardwareMap.servo.get("foundation_grabber");
 
-        //backRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-      //  backLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-       // frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-       // frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        grabberLeft.setPosition(leftOpenFull);
+        grabberRight.setPosition(rightOpenFull);
+
+        backRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        backLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         driver = gamepad1;
         gunner = gamepad2;
