@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.BaseOpMode;
 
-@TeleOp(name = "Teleop2019", group = "Testing")
+@TeleOp(name = "Teleop2019", group = "Competition")
 public class Teleop extends BaseOpMode {
 
     public Teleop() {
@@ -31,6 +31,7 @@ public class Teleop extends BaseOpMode {
     private float grabberFast = .01f;
     private float grabberSlow = .005f;
     private float grabberSpeed = grabberFast;
+    private float liftStallPower = .1f;
 
     // LinAc
     private float outLinAcSpeed = .6f;
@@ -41,14 +42,21 @@ public class Teleop extends BaseOpMode {
         this.log("Lift Position", lift.getCurrentPosition() + "");
         this.log("Lift Speed", "Up: " + upLiftSpeed + " | Down: " + downLiftSpeed);
 
+        if (gunner.right_bumper) {
+            this.log("Stalling", "-");
+            lift.setPower(liftStallPower);
+            return;
+        }
         // Make the lift go slower on down, due to gravity influence
         if (lift.getCurrentPosition() <= -1) {
             if (gunnerRightY < 0) {
+                this.log("At LiftEncoder Min", "!");
                 lift.setPower(0);
                 return;
             }
         } else if (lift.getCurrentPosition() >= 3220) {
             if (gunnerRightY > 0) {
+                this.log("At LiftEncoder Max", "!");
                 lift.setPower(0);
                 return;
             }
@@ -126,9 +134,7 @@ public class Teleop extends BaseOpMode {
         if (gunner.right_trigger >= .9) {
             grabberRight.setPosition(rightCloseFull);
             grabberLeft.setPosition(leftCloseFull);
-        }
-
-        if (gunner.right_bumper) {
+        } else if (gunner.right_trigger >= .15) {
             grabberRight.setPosition(rightCloseHalf);
             grabberLeft.setPosition(leftCloseHalf);
         }

@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.StringJoiner;
 
-@TeleOp(name = "Persistence Test", group = "Testing")
+@TeleOp(name = "Persistent Test", group = "Utility")
 public class PersistenceTest extends BaseOpMode {
 
     String status = "_";
