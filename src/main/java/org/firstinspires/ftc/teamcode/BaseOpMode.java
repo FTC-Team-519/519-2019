@@ -44,11 +44,18 @@ public abstract class BaseOpMode extends OpMode {
     public float y;
     public float z;
 
+    // Foundation grabber
+    public float foundationDown = .75f; // up pos
+    public float foundationUp = .71f; // start pos
+
     public float gunnerRightX;
     public float gunnerRightY;
 
     public float gunnerLeftX;
     public float gunnerLeftY;
+
+    // Motor Speeds
+    public float motorSpeed = 1f;
 
     // Gamepads
     public Gamepad driver;
@@ -82,6 +89,9 @@ public abstract class BaseOpMode extends OpMode {
         grabberLeft.setPosition(leftOpenFull);
         grabberRight.setPosition(rightOpenFull);
 
+        foundationGrabber.setPosition(foundationUp);
+        //this.log("Foundation Position", foundationGrabber.getPosition() + "");
+
         backRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         backLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -109,10 +119,10 @@ public abstract class BaseOpMode extends OpMode {
     }
 
     public void updateMotorPowers() {
-        motorPowers[FRONT_RIGHT] = y - x - z;
-        motorPowers[FRONT_LEFT] = (y + x + z);
-        motorPowers[BACK_RIGHT] = (y + x - z);
-        motorPowers[BACK_LEFT] = y - x + z;
+        motorPowers[FRONT_RIGHT] = motorSpeed * (y - x - z);
+        motorPowers[FRONT_LEFT] = motorSpeed * (y + x + z);
+        motorPowers[BACK_RIGHT] = motorSpeed * (y + x - z);
+        motorPowers[BACK_LEFT] = motorSpeed * (y - x + z);
         normalizeCombinedPowers();
     }
 
