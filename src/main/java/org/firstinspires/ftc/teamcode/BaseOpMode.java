@@ -45,7 +45,7 @@ public abstract class BaseOpMode extends OpMode {
     public float z;
 
     // Foundation grabber
-    public float foundationDown = .75f; // up pos
+    public float foundationDown = .78f; // up pos
     public float foundationUp = .71f; // start pos
 
     public float gunnerRightX;

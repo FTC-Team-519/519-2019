@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.teleop;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.teamcode.autonomous.RecordingThread;
 import org.firstinspires.ftc.teamcode.record.BlackBox;
 import org.firstinspires.ftc.teamcode.record.PersistentFileOutputStream;
 
@@ -13,7 +14,7 @@ public class RecordingTeleop extends Teleop {
     private BlackBox.Recorder recorder;
     private boolean isRecordingMode = false;
     private ElapsedTime recordTimer;
-
+    private RecordingThread recordingThread;
     public RecordingTeleop(String name) {
         this.recordingName = name;
     }
@@ -35,6 +36,11 @@ public class RecordingTeleop extends Teleop {
     }
 
     @Override
+    public void start() {
+        super.start();
+        this.recordingThread = new RecordingThread(this.recorder, this.hardwareMap);
+    }
+    @Override
     public void loop() {
         super.loop();
 
@@ -43,6 +49,7 @@ public class RecordingTeleop extends Teleop {
             if (isRecordingMode) {
                 if (recordTimer == null) {
                     recordTimer = new ElapsedTime();
+                    //this.log("Starting recording!", "-");
                     recordTimer.reset();
                 } else {
                     // TODO: pause timer
@@ -52,14 +59,16 @@ public class RecordingTeleop extends Teleop {
 
         // Record the values
         if (this.isRecordingMode) {
-            this.log("Currently Recording Values!", "");
+            this.log("Currently Recording Values!!!!", "");
 
-            try {
+            this.recordingThread.run();
+           // new RecordingThread(recorder, recordTimer, hardwareMap)
+            /*try {
                 this.recorder.recordAllDevices(recordTimer.time());
             } catch (Exception e) {
                 e.printStackTrace();
                 this.requestOpModeStop();
-            }
+            }*/
         }
     }
 
@@ -76,7 +85,7 @@ public class RecordingTeleop extends Teleop {
         }
     }
 
-    @TeleOp(name = "RecordRed", group = "Recording")
+   /*@TeleOp(name = "RecordRed", group = "Recording")
     public static class RecordRed extends RecordingTeleop {
         public RecordRed() { super("RedNoStone"); }
     }
@@ -84,7 +93,7 @@ public class RecordingTeleop extends Teleop {
     @TeleOp(name = "RecordBlue", group = "Recording")
     public static class RecordBlue extends RecordingTeleop {
         public RecordBlue() { super("BlueNoStone"); }
-    }
+    }*/
 
     // the recordings
     @TeleOp(name = "RecordRedStoneLeft", group = "Recording")
@@ -103,42 +112,42 @@ public class RecordingTeleop extends Teleop {
     }
 
 
-    @TeleOp(name = "BluePark", group = "Competition")
+    @TeleOp(name = "RecordBluePark", group = "Recording")
     public static class BluePark extends RecordingTeleop {
         public BluePark() {
             super("BluePark");
         }
     }
 
-    @TeleOp(name = "RedPark", group = "Competition")
+    @TeleOp(name = "RecordRedPark", group = "Recording")
     public static class RedPark extends RecordingTeleop {
         public RedPark() {
             super("RedPark");
         }
     }
 
-    @TeleOp(name = "BlueFoundationPark", group = "Competition")
+    @TeleOp(name = "RecordBlueFoundationPark", group = "Recording")
     public static class BlueFoundationPark extends RecordingTeleop {
         public BlueFoundationPark() {
             super("BlueFoundationPark");
         }
     }
 
-    @TeleOp(name = "RedFoundationPark", group = "Competition")
+    @TeleOp(name = "RecordRedFoundationPark", group = "Recording")
     public static class RedFoundationPark extends RecordingTeleop {
         public RedFoundationPark() {
             super("RedFoundationPark");
         }
     }
 
-    @TeleOp(name = "RedBlockFoundationPark", group = "Competition")
+    @TeleOp(name = "RecordRedBlockFoundationPark", group = "Recording")
     public static class RedBlockFoundationPark extends RecordingTeleop {
         public RedBlockFoundationPark() {
             super("RedBlockFoundationPark");
         }
     }
 
-    @TeleOp(name = "BlueBlockFoundationPark", group = "Competition")
+    @TeleOp(name = "RecordBlueBlockFoundationPark", group = "Recording")
     public static class BlueBlockFoundationPark extends RecordingTeleop {
         public BlueBlockFoundationPark() {
             super("BlueBlockFoundationPark");
