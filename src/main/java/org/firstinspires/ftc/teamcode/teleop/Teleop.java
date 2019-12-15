@@ -191,11 +191,11 @@ public class Teleop extends BaseOpMode {
         }
 
         if (driver.dpad_up) {
-            this.motorSpeed = .5f;
+            this.motorSpeed = .4f;
         }
 
         if (driver.dpad_down) {
-            this.motorSpeed = 1f;
+            this.motorSpeed = .9f;
         }
 
         if (driver.a) {

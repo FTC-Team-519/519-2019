@@ -75,7 +75,7 @@ public class AutonomousPlayback extends BaseOpMode {
     }
 
 
-    @Autonomous(name = "AutonomousRed", group = "Competition")
+    /*@Autonomous(name = "AutonomousRed", group = "Competition")
     public static class AutonomousRed extends AutonomousPlayback {
         public AutonomousRed() {
             super("RedNoStone");
@@ -88,6 +88,48 @@ public class AutonomousPlayback extends BaseOpMode {
         public AutonomousBlue() {
             super("BlueNoStone");
            // super("BlueStone%s");
+        }
+    }*/
+
+    @Autonomous(name = "BluePark", group = "Competition")
+    public static class BluePark extends AutonomousPlayback {
+        public BluePark() {
+            super("BluePark");
+        }
+    }
+
+    @Autonomous(name = "RedPark", group = "Competition")
+    public static class RedPark extends AutonomousPlayback {
+        public RedPark() {
+            super("RedPark");
+        }
+    }
+
+    @Autonomous(name = "BlueFoundationPark", group = "Competition")
+    public static class BlueFoundationPark extends AutonomousPlayback {
+        public BlueFoundationPark() {
+            super("BlueFoundationPark");
+        }
+    }
+
+    @Autonomous(name = "RedFoundationPark", group = "Competition")
+    public static class RedFoundationPark extends AutonomousPlayback {
+        public RedFoundationPark() {
+            super("RedFoundationPark");
+        }
+    }
+
+    @Autonomous(name = "RedBlockFoundationPark", group = "Competition")
+    public static class RedBlockFoundationPark extends AutonomousPlayback {
+        public RedBlockFoundationPark() {
+            super("RedBlockFoundationPark");
+        }
+    }
+
+    @Autonomous(name = "BlueBlockFoundationPark", group = "Competition")
+    public static class BlueBlockFoundationPark extends AutonomousPlayback {
+        public BlueBlockFoundationPark() {
+            super("BlueBlockFoundationPark");
         }
     }
 }

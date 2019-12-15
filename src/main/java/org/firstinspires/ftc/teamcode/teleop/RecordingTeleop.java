@@ -102,5 +102,48 @@ public class RecordingTeleop extends Teleop {
         public RecordRedStoneRight() { super("RedStoneRight"); }
     }
 
+
+    @TeleOp(name = "BluePark", group = "Competition")
+    public static class BluePark extends RecordingTeleop {
+        public BluePark() {
+            super("BluePark");
+        }
+    }
+
+    @TeleOp(name = "RedPark", group = "Competition")
+    public static class RedPark extends RecordingTeleop {
+        public RedPark() {
+            super("RedPark");
+        }
+    }
+
+    @TeleOp(name = "BlueFoundationPark", group = "Competition")
+    public static class BlueFoundationPark extends RecordingTeleop {
+        public BlueFoundationPark() {
+            super("BlueFoundationPark");
+        }
+    }
+
+    @TeleOp(name = "RedFoundationPark", group = "Competition")
+    public static class RedFoundationPark extends RecordingTeleop {
+        public RedFoundationPark() {
+            super("RedFoundationPark");
+        }
+    }
+
+    @TeleOp(name = "RedBlockFoundationPark", group = "Competition")
+    public static class RedBlockFoundationPark extends RecordingTeleop {
+        public RedBlockFoundationPark() {
+            super("RedBlockFoundationPark");
+        }
+    }
+
+    @TeleOp(name = "BlueBlockFoundationPark", group = "Competition")
+    public static class BlueBlockFoundationPark extends RecordingTeleop {
+        public BlueBlockFoundationPark() {
+            super("BlueBlockFoundationPark");
+        }
+    }
+
 }
 
