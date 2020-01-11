@@ -13,8 +13,12 @@ public abstract class BaseOpMode extends OpMode {
     public DcMotor backLeft;
     public DcMotor frontRight;
     public DcMotor backRight;
-    public DcMotor linAc;
-    public DcMotor lift;
+
+    public DcMotor liftLeft;
+    public DcMotor liftRight;
+
+    public DcMotor tape1;
+    public DcMotor tape2;
 
     public static final int FRONT_LEFT  = 0;
     public static final int FRONT_RIGHT = 1;
@@ -25,10 +29,11 @@ public abstract class BaseOpMode extends OpMode {
     private static double[] motorPowers = new double[4];
 
     // Servos
-    public Servo grabberRight;
-    public Servo grabberLeft;
-    public Servo grabberTurn;
-    public Servo foundationGrabber;
+    public Servo grabberFront;
+    public Servo grabberSide;
+
+    public Servo platformLeft;
+    public Servo platformRight;
 
     // Grabber
     protected float rightOpenFull = .1f;
@@ -75,21 +80,29 @@ public abstract class BaseOpMode extends OpMode {
 
 
         // Other motors
-        lift = hardwareMap.dcMotor.get("lift");
-        linAc = hardwareMap.dcMotor.get("linear_ac");
+        liftLeft = hardwareMap.dcMotor.get("lift_left");
+        liftRight = hardwareMap.dcMotor.get("lift_right");
 
-        lift.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        linAc.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        liftLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        liftRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        tape1 = hardwareMap.dcMotor.get("tape_1");
+        tape2 = hardwareMap.dcMotor.get("tape_2");
+
+        tape1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        tape2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
         // Servos
-        grabberLeft = hardwareMap.servo.get("grabber_left");
-        grabberRight = hardwareMap.servo.get("grabber_right");
-        grabberTurn = hardwareMap.servo.get("grabber_turn");
-        foundationGrabber = hardwareMap.servo.get("foundation_grabber");
+        grabberFront = hardwareMap.servo.get("grabber_front");
+        grabberSide = hardwareMap.servo.get("grabber_side");
+        platformLeft = hardwareMap.servo.get("platform_left");
+        platformRight = hardwareMap.servo.get("platform_right");
 
-        grabberLeft.setPosition(leftOpenFull);
-        grabberRight.setPosition(rightOpenFull);
+        grabberFront.setPosition(0.5); // FIXME:
+        grabberSide.setPosition(0.5);  // FIXME:
 
-        foundationGrabber.setPosition(foundationUp);
+        platformLeft.setPosition(0.5);  // FIXME:
+        platformRight.setPosition(0.5);  // FIXME:
         //this.log("Foundation Position", foundationGrabber.getPosition() + "");
 
         backRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -191,10 +204,14 @@ public abstract class BaseOpMode extends OpMode {
 
     // OVERRIDE IN SUBCLASSES BUT CALL SUPER
     public void start() {
-        lift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        lift.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        linAc.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        linAc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        liftLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        liftLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        liftRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        liftRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        tape1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        tape1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        tape2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        tape2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
     public BaseOpMode() {

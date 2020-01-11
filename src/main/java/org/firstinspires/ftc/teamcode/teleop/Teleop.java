@@ -40,15 +40,18 @@ public class Teleop extends BaseOpMode {
     boolean foundationIsDown = false;
 
     public void updateLift() {
-        this.log("Lift Position", lift.getCurrentPosition() + "");
+        this.log("Lift Left Position", liftLeft.getCurrentPosition() + "");
+        this.log("Lift Right Position", liftRight.getCurrentPosition() + "");
         this.log("Lift Speed", "Up: " + upLiftSpeed + " | Down: " + downLiftSpeed);
 
         boolean goingDown = (gunnerRightY < 0);
         boolean stalling = gunner.left_bumper;
+/*
         if (stalling) {
             if (!goingDown) { // includes if neutral (0)
                 this.log("Stalling", "-");
-                lift.setPower(liftStallPower);
+                liftLeft.setPower(liftStallPower);
+                liftRight.setPower(liftStallPower);
                 return;
             }
         }
@@ -74,7 +77,9 @@ public class Teleop extends BaseOpMode {
         } else {
             lift.setPower(goingDown ? gunnerRightY*downLiftSpeed : gunnerRightY*upLiftSpeed);
         }
-}
+*/
+    }
+
 
     public double clamp(double val, float min, float max) {
         return Math.max(min, Math.min(max, val));
@@ -99,7 +104,7 @@ public class Teleop extends BaseOpMode {
         }
 
         position = clamp(position, .2f, .87f);
-        grabberTurn.setPosition(position);
+        //grabberTurn.setPosition(position);
     }
 
     double pos = 0;
@@ -111,6 +116,7 @@ public class Teleop extends BaseOpMode {
         // Lift
 
         //this.log("LinAc", linAc.getCurrentPosition() + "");
+        /*
         if (gunner.y) {
             // LinAc out
             //linAc.setTargetPosition();
@@ -125,6 +131,7 @@ public class Teleop extends BaseOpMode {
             this.log("LinAc", "At a limit, not moving (" + linAc.getCurrentPosition() + ")");
             linAc.setPower(0);
         }
+         */
 
         if (gunner.dpad_left) {
             upLiftSpeed = .8f;
@@ -152,6 +159,7 @@ public class Teleop extends BaseOpMode {
             grabberLeft.setPosition(leftCloseHalf);
         }*/
 
+        /*
         if (driver.left_bumper) {
             grabberRight.setPosition(rightOpenFull);
             grabberLeft.setPosition(leftOpenFull);
@@ -166,10 +174,12 @@ public class Teleop extends BaseOpMode {
             grabberRight.setPosition(rightCloseHalf);
             grabberLeft.setPosition(leftCloseHalf);
         }
+         */
 
         this.updateDriveMotors();
 
 
+        /*
         if (gunner.start) {
             this.log("Resetting horizontal", "-");
             linAc.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -181,6 +191,8 @@ public class Teleop extends BaseOpMode {
             lift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             lift.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         }
+
+         */
 
         if (gunner.x) {
             grabberSpeed = grabberSlow;
@@ -206,6 +218,7 @@ public class Teleop extends BaseOpMode {
             this.motorSpeed = Math.abs(this.motorSpeed);
         }
 
+        /*
         if (driver.b) {
             this.foundationGrabber.setPosition(this.foundationDown);
         }
@@ -213,6 +226,7 @@ public class Teleop extends BaseOpMode {
         if (driver.x) {
             this.foundationGrabber.setPosition(this.foundationUp);
         }
+         */
 
        /* if (driver.b) {
             if (foundationIsDown) {
