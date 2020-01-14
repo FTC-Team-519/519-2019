@@ -31,6 +31,7 @@ public abstract class BaseOpMode extends OpMode {
     // Servos
     public Servo grabberFront;
     public Servo grabberSide;
+    public Servo grabberSideArm;
 
     public Servo platformLeft;
     public Servo platformRight;
@@ -95,11 +96,13 @@ public abstract class BaseOpMode extends OpMode {
         // Servos
         grabberFront = hardwareMap.servo.get("grabber_front");
         grabberSide = hardwareMap.servo.get("grabber_side");
+        grabberSideArm = hardwareMap.servo.get("grabber_side_arm");
         platformLeft = hardwareMap.servo.get("platform_left");
         platformRight = hardwareMap.servo.get("platform_right");
 
         grabberFront.setPosition(0.5); // FIXME:
         grabberSide.setPosition(0.5);  // FIXME:
+        grabberSideArm.setPosition(0.5); // FIXME:
 
         platformLeft.setPosition(0.5);  // FIXME:
         platformRight.setPosition(0.5);  // FIXME:
