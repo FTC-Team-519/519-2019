@@ -8,6 +8,15 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 public abstract class BaseOpMode extends OpMode {
 
+    public static double LEFT_PLATFORM_GRABBER_UP = 0.0;
+    public static double LEFT_PLATFORM_GRABBER_DOWN = 0.3;
+    public static double RIGHT_PLATFORM_GRABBER_UP = 0.9;
+    public static double RIGHT_PLATFORM_GRABBER_DOWN = 0.6;
+
+    public static double FRONT_GRABBER_VERTICAL_UP = 0.15;
+    public static double FRONT_GRABBER_UP = 0.5;
+    public static double FRONT_GRABBER_DOWN = 0.78;
+
     // Motors
     public DcMotor frontLeft;
     public DcMotor backLeft;
@@ -78,7 +87,7 @@ public abstract class BaseOpMode extends OpMode {
         //backRight.setDirection(DcMotorSimple.Direction.REVERSE);
         //backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
         backRight.setDirection(DcMotorSimple.Direction.REVERSE);
-
+        frontRight.setDirection(DcMotorSimple.Direction.REVERSE);
 
         // Other motors
         liftLeft = hardwareMap.dcMotor.get("lift_left");
@@ -100,12 +109,6 @@ public abstract class BaseOpMode extends OpMode {
         platformLeft = hardwareMap.servo.get("platform_left");
         platformRight = hardwareMap.servo.get("platform_right");
 
-        grabberFront.setPosition(0.5); // FIXME:
-        grabberSide.setPosition(0.5);  // FIXME:
-        grabberSideArm.setPosition(0.5); // FIXME:
-
-        platformLeft.setPosition(0.5);  // FIXME:
-        platformRight.setPosition(0.5);  // FIXME:
         //this.log("Foundation Position", foundationGrabber.getPosition() + "");
 
         backRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);

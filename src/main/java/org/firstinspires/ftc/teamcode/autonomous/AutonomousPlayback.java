@@ -25,6 +25,13 @@ public class AutonomousPlayback extends BaseOpMode {
     public void init() {
         vuforia = new Vuforia(this.hardwareMap);
         super.setupHardware();
+
+        grabberFront.setPosition(FRONT_GRABBER_VERTICAL_UP);
+        grabberSide.setPosition(0.1);
+        grabberSideArm.setPosition(0.6);
+
+        platformLeft.setPosition(LEFT_PLATFORM_GRABBER_UP);
+        platformRight.setPosition(RIGHT_PLATFORM_GRABBER_UP);
     }
 
     public void init_loop() {

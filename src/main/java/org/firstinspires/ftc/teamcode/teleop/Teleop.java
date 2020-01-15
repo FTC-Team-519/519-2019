@@ -92,19 +92,13 @@ public class Teleop extends BaseOpMode {
     double position = .53;
     public void updateGrabber() {
         //this.log("Grabber Turn-Servo Reading", grabberTurn.getPosition() + "");
-
-        if (gunnerLeftX > 0.1) {
-            position += grabberSpeed;
-        } else if (gunnerLeftX < -.1){
-            position -= grabberSpeed;
+        if (gunner.right_bumper) {
+            grabberFront.setPosition(FRONT_GRABBER_DOWN);
         }
 
-        if (gunner.left_stick_button) {
-            position = .53;
+        if (gunner.left_bumper) {
+            grabberFront.setPosition(FRONT_GRABBER_UP);
         }
-
-        position = clamp(position, .2f, .87f);
-        //grabberTurn.setPosition(position);
     }
 
     double pos = 0;
@@ -218,15 +212,17 @@ public class Teleop extends BaseOpMode {
             this.motorSpeed = Math.abs(this.motorSpeed);
         }
 
-        /*
+
         if (driver.b) {
-            this.foundationGrabber.setPosition(this.foundationDown);
+            this.platformLeft.setPosition(LEFT_PLATFORM_GRABBER_DOWN);
+            this.platformRight.setPosition(RIGHT_PLATFORM_GRABBER_DOWN);
         }
 
         if (driver.x) {
-            this.foundationGrabber.setPosition(this.foundationUp);
+            this.platformLeft.setPosition(LEFT_PLATFORM_GRABBER_UP);
+            this.platformRight.setPosition(RIGHT_PLATFORM_GRABBER_UP);
         }
-         */
+
 
        /* if (driver.b) {
             if (foundationIsDown) {
