@@ -15,7 +15,7 @@ public abstract class BaseOpMode extends OpMode {
 
     public static double FRONT_GRABBER_VERTICAL_UP = 0.15;
     public static double FRONT_GRABBER_UP = 0.5;
-    public static double FRONT_GRABBER_DOWN = 0.78;
+    public static double FRONT_GRABBER_DOWN = 0.82;
 
     // Motors
     public DcMotor frontLeft;
@@ -99,8 +99,8 @@ public abstract class BaseOpMode extends OpMode {
         tape1 = hardwareMap.dcMotor.get("tape_1");
         tape2 = hardwareMap.dcMotor.get("tape_2");
 
-        tape1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        tape2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        tape1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        tape2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 
         // Servos
         grabberFront = hardwareMap.servo.get("grabber_front");

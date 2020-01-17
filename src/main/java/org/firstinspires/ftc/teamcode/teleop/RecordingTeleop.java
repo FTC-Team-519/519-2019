@@ -44,7 +44,7 @@ public class RecordingTeleop extends Teleop {
     public void loop() {
         super.loop();
 
-        if (driver.a && (isRecordingMode == false)) {
+        if (driver.x && (isRecordingMode == false)) {
             isRecordingMode = true;
             if (isRecordingMode) {
                 if (recordTimer == null) {

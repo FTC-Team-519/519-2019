@@ -46,6 +46,9 @@ public class Teleop extends BaseOpMode {
 
         boolean goingDown = (gunnerRightY < 0);
         boolean stalling = gunner.left_bumper;
+
+        liftLeft.setPower(-gunnerRightY);
+        liftRight.setPower(gunnerRightY);
 /*
         if (stalling) {
             if (!goingDown) { // includes if neutral (0)
@@ -127,14 +130,15 @@ public class Teleop extends BaseOpMode {
         }
          */
 
-        if (gunner.dpad_left) {
-            upLiftSpeed = .8f;
-            downLiftSpeed = .7f;
-        }
-
-        if (gunner.dpad_right) {
-            upLiftSpeed = 1f;
-            downLiftSpeed = .9f;
+        if (gunner.dpad_up) {
+            tape1.setPower(-1.0);
+            tape2.setPower(0.0);
+        } else if (gunner.dpad_down) {
+            tape1.setPower(0.0);
+            tape2.setPower(1.0);
+        } else {
+            tape1.setPower(0.0);
+            tape2.setPower(0.0);
         }
 
         this.updateLift();
@@ -223,6 +227,21 @@ public class Teleop extends BaseOpMode {
             this.platformRight.setPosition(RIGHT_PLATFORM_GRABBER_UP);
         }
 
+        if (driver.right_bumper) {
+            grabberSide.setPosition(0.8);
+        }
+
+        if (driver.left_bumper) {
+            grabberSide.setPosition(0.4);
+        }
+
+        if (driver.right_trigger > 0.1) {
+            grabberSideArm.setPosition(0.5);
+        }
+
+        if (driver.left_trigger > 0.1) {
+            grabberSideArm.setPosition(0.7);
+        }
 
        /* if (driver.b) {
             if (foundationIsDown) {
