@@ -228,19 +228,23 @@ public class Teleop extends BaseOpMode {
         }
 
         if (driver.right_bumper) {
-            grabberSide.setPosition(0.8);
+            grabberSide.setPosition(0.7);
         }
 
         if (driver.left_bumper) {
-            grabberSide.setPosition(0.4);
+            grabberSide.setPosition(0.5);
         }
 
         if (driver.right_trigger > 0.1) {
-            grabberSideArm.setPosition(0.5);
+            grabberSideArm.setPosition(0.4);
         }
 
         if (driver.left_trigger > 0.1) {
-            grabberSideArm.setPosition(0.7);
+            grabberSideArm.setPosition(0.65);
+        }
+
+        if (driver.dpad_left || driver.dpad_right) {
+            grabberSide.setPosition(0.1);
         }
 
        /* if (driver.b) {
