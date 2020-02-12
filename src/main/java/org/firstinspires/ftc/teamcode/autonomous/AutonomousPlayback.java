@@ -28,7 +28,7 @@ public class AutonomousPlayback extends BaseOpMode {
 
         grabberFront.setPosition(FRONT_GRABBER_VERTICAL_UP);
         grabberSide.setPosition(0.1);
-        grabberSideArm.setPosition(0.6);
+        frontSpinner.setPower(0.0);
 
         platformLeft.setPosition(LEFT_PLATFORM_GRABBER_UP);
         platformRight.setPosition(RIGHT_PLATFORM_GRABBER_UP);

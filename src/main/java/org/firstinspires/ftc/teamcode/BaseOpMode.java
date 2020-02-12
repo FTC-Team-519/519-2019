@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Gamepad;
@@ -40,7 +41,7 @@ public abstract class BaseOpMode extends OpMode {
     // Servos
     public Servo grabberFront;
     public Servo grabberSide;
-    public Servo frontSpinner;
+    public CRServo frontSpinner;
 
     public Servo platformLeft;
     public Servo platformRight;
@@ -105,7 +106,7 @@ public abstract class BaseOpMode extends OpMode {
         // Servos
         grabberFront = hardwareMap.servo.get("grabber_front");
         grabberSide = hardwareMap.servo.get("grabber_side");
-        frontSpinner = hardwareMap.servo.get("front_grabber");
+        frontSpinner = hardwareMap.crservo.get("front_spinner");
         platformLeft = hardwareMap.servo.get("platform_left");
         platformRight = hardwareMap.servo.get("platform_right");
 
