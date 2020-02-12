@@ -236,11 +236,11 @@ public class Teleop extends BaseOpMode {
         }
 
         if (driver.right_trigger > 0.1) {
-            grabberSideArm.setPosition(0.4);
+            frontSpinner.setPosition(0.4);
         }
 
         if (driver.left_trigger > 0.1) {
-            grabberSideArm.setPosition(0.65);
+            frontSpinner.setPosition(0.65);
         }
 
         if (driver.dpad_left || driver.dpad_right) {
