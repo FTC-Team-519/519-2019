@@ -8,6 +8,8 @@ import org.firstinspires.ftc.teamcode.BaseOpMode;
 @TeleOp(name = "Teleop2019", group = "Competition")
 public class Teleop extends BaseOpMode {
 
+    boolean spinnerMoving;
+
     public Teleop() {
         
     }
@@ -92,14 +94,15 @@ public class Teleop extends BaseOpMode {
         return (value - from1) / (to1 - from1) * (to2 - from2) + from2;
     }
 
+
     double position = .53;
     public void updateGrabber() {
         //this.log("Grabber Turn-Servo Reading", grabberTurn.getPosition() + "");
-        if (gunner.right_bumper) {
+        if (gunner.a) {
             grabberFront.setPosition(FRONT_GRABBER_DOWN);
         }
 
-        if (gunner.left_bumper) {
+        if (gunner.y) {
             grabberFront.setPosition(FRONT_GRABBER_UP);
         }
     }
@@ -218,7 +221,7 @@ public class Teleop extends BaseOpMode {
 
 
         if (driver.b) {
-            this.platformLeft.setPosition(LEFT_PLATFORM_GRABBER_DOWN);
+            .platformLeft.setPosition(LEFT_PLATFORM_GRABBER_DOWN);
             this.platformRight.setPosition(RIGHT_PLATFORM_GRABBER_DOWN);
         }
 
@@ -227,20 +230,23 @@ public class Teleop extends BaseOpMode {
             this.platformRight.setPosition(RIGHT_PLATFORM_GRABBER_UP);
         }
 
-        if (driver.right_bumper) {
+        if (gunner.right_bumper) {
+            grabberSide.setPosition(0.45);
+        }
+
+        if (gunner.left_bumper) {
             grabberSide.setPosition(0.7);
         }
 
-        if (driver.left_bumper) {
-            grabberSide.setPosition(0.5);
-        }
-
-        if (driver.right_trigger > 0.1) {
-            frontSpinner.setPower(0.5);
-        }
-
-        if (driver.left_trigger > 0.1) {
+        if (gunner.right_trigger > 0.1 && gunner.left_trigger > 0.1 ) {
+            spinnerMoving = false;
+            frontSpinner.setPower(0.0);
+        } else if (gunner.left_trigger > 0.1) {
+            spinnerMoving = true;
             frontSpinner.setPower(-0.5);
+        } else if (gunner.right_trigger > 0.1) {
+            spinnerMoving = true;
+            frontSpinner.setPower(0.5);
         }
 
         if (driver.dpad_left || driver.dpad_right) {
