@@ -221,7 +221,7 @@ public class Teleop extends BaseOpMode {
 
 
         if (driver.b) {
-            .platformLeft.setPosition(LEFT_PLATFORM_GRABBER_DOWN);
+            this.platformLeft.setPosition(LEFT_PLATFORM_GRABBER_DOWN);
             this.platformRight.setPosition(RIGHT_PLATFORM_GRABBER_DOWN);
         }
 

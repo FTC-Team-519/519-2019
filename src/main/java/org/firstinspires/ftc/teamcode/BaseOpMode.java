@@ -10,9 +10,9 @@ import com.qualcomm.robotcore.hardware.Servo;
 public abstract class BaseOpMode extends OpMode {
 
     public static double LEFT_PLATFORM_GRABBER_UP = 0.0;
-    public static double LEFT_PLATFORM_GRABBER_DOWN = 0.3;
+    public static double LEFT_PLATFORM_GRABBER_DOWN = 0.5;
     public static double RIGHT_PLATFORM_GRABBER_UP = 0.9;
-    public static double RIGHT_PLATFORM_GRABBER_DOWN = 0.6;
+    public static double RIGHT_PLATFORM_GRABBER_DOWN = 0.5;
 
     public static double FRONT_GRABBER_VERTICAL_UP = 0.15;
     public static double FRONT_GRABBER_UP = 0.5;
