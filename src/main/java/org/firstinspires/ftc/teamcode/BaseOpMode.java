@@ -29,6 +29,7 @@ public abstract class BaseOpMode extends OpMode {
 
     public DcMotor tape1;
     public DcMotor tape2;
+    //this is a comment
 
     public static final int FRONT_LEFT  = 0;
     public static final int FRONT_RIGHT = 1;
