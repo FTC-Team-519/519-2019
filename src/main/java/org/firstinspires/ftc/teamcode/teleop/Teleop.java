@@ -232,12 +232,12 @@ public class Teleop extends BaseOpMode {
 
         if (gunner.right_bumper) {
             //This closes the side grabber
-            grabberSide.setPosition(0.35);
+            grabberSide.setPosition(0.5);
         }
 
         if (gunner.left_bumper) {
             //this opens the side grabber
-            grabberSide.setPosition(0.7);
+            grabberSide.setPosition(0.9);
         }
 
         if (gunner.right_trigger > 0.1 && gunner.left_trigger > 0.1 ) {

@@ -15,8 +15,8 @@ public abstract class BaseOpMode extends OpMode {
     public static double RIGHT_PLATFORM_GRABBER_DOWN = 0.5;
 
     public static double FRONT_GRABBER_VERTICAL_UP = 0.15;
-    public static double FRONT_GRABBER_UP = 0.5;
-    public static double FRONT_GRABBER_DOWN = 0.96;
+    public static double FRONT_GRABBER_UP = 0.7;
+    public static double FRONT_GRABBER_DOWN = 0.9;
 
     // Motors
     public DcMotor frontLeft;
