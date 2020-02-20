@@ -26,10 +26,13 @@ public class AutonomousPlayback extends BaseOpMode {
         vuforia = new Vuforia(this.hardwareMap);
         super.setupHardware();
 
-        grabberFront.setPosition(FRONT_GRABBER_VERTICAL_UP);
+        // FIXME: These should be some values, but what they are now are not good, but
+        //        not initializing to any value isn't any better, since they seem to get
+        //        energized when the rest of the robot tries to do things
+//        grabberFront.setPosition(FRONT_GRABBER_VERTICAL_UP);
         grabberSide.setPosition(0.1);
-        frontSpinner.setPower(0.0);
-
+//        frontSpinner.setPower(0.0);
+//
         platformLeft.setPosition(LEFT_PLATFORM_GRABBER_UP);
         platformRight.setPosition(RIGHT_PLATFORM_GRABBER_UP);
     }
