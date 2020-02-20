@@ -29,8 +29,8 @@ public class AutonomousPlayback extends BaseOpMode {
         // FIXME: These should be some values, but what they are now are not good, but
         //        not initializing to any value isn't any better, since they seem to get
         //        energized when the rest of the robot tries to do things
-//        grabberFront.setPosition(FRONT_GRABBER_VERTICAL_UP);
-        grabberSide.setPosition(0.1);
+        grabberFront.setPosition(FRONT_GRABBER_VERTICAL_UP);
+        grabberSide.setPosition(0.7);
 //        frontSpinner.setPower(0.0);
 //
         platformLeft.setPosition(LEFT_PLATFORM_GRABBER_UP);

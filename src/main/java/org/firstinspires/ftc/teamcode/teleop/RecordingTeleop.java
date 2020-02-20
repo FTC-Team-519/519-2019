@@ -38,6 +38,10 @@ public class RecordingTeleop extends Teleop {
     @Override
     public void start() {
         super.start();
+        grabberFront.setPosition(FRONT_GRABBER_VERTICAL_UP);
+        grabberSide.setPosition(0.7);
+        platformLeft.setPosition(LEFT_PLATFORM_GRABBER_UP);
+        platformRight.setPosition(RIGHT_PLATFORM_GRABBER_UP);
         this.recordingThread = new RecordingThread(this.recorder, this.hardwareMap);
     }
     @Override

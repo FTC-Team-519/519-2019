@@ -203,11 +203,11 @@ public class Teleop extends BaseOpMode {
             grabberSpeed = grabberFast;
         }
 
-        if (driver.dpad_up) {
+        if (driver.left_bumper) {
             this.motorSpeed = .4f;
         }
 
-        if (driver.dpad_down) {
+        if (driver.right_bumper) {
             this.motorSpeed = .9f;
         }
 
@@ -231,7 +231,7 @@ public class Teleop extends BaseOpMode {
         }
 
         if (gunner.right_bumper) {
-            //This closes the side grabber
+            //This closes the side grabbers
             grabberSide.setPosition(0.5);
         }
 
